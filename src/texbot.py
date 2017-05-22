@@ -12,21 +12,21 @@ client = discord.Client()
 @client.event
 async def on_message(message):
     if message.content.startswith('=latex'):
-        call(["cp","-T","placeholder.png","out.png"])
+        call(["cp","-T","../res/placeholder.png","../res/out.png"])
         mid=message.content[6:]
         
-        with open('comp.tex','w') as f:
+        with open('../res/comp.tex','w') as f:
             f.write(BEFORE)
             f.write(mid)
             f.write(AFTER)
             f.close()
         
-        out = call(["pdflatex","-halt-on-error","comp.tex"])
+        out = call(["pdflatex","-output-directory","../res/","-halt-on-error","../res/comp.tex"])
         if not(out):
-            call(["convert","comp.pdf","out.png"])
+            call(["convert","../res/comp.pdf","../res/out.png"])
     
-        await client.send_file(message.channel, 'out.png')
+        await client.send_file(message.channel, '../res/out.png')
 
         
-client.run('MzE2MzAwOTQ2NDc5MjUxNDU2.DATSZA.1lh970Uq_zXPjSlhMPUFnNk_i94')
+client.run('')
 
