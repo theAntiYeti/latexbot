@@ -26,6 +26,8 @@ async def on_message(message):
             call(["convert","../res/comp.pdf","../res/out.png"])
     
         await client.send_file(message.channel, '../res/out.png')
+    elif message.content.startswith('=help'):
+        await client.send_file(message.channel, '../help/latexbotdoc.pdf')    
 
         
 client.run('')
